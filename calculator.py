@@ -74,13 +74,16 @@ def render():
 
     # label for displaying inputs and outputs
     # aka frame on top
+    display_text = ctk.StringVar()  # Variable to hold the text to display
     display = ctk.CTkLabel(row_1,
                            width=350,
                            height=100,
                            fg_color=primary,
                            corner_radius=5,
                            text="",
-                           )
+                           font=("arial", 40),
+                           textvariable=display_text,
+                           anchor="e")
 
     display.grid(row=1, column=1, columnspan=8)
 
@@ -94,7 +97,8 @@ def render():
                           border_color=tertiary,
                           border_width=1,
                           text_color=tertiary,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("clear"))
 
     btn_c.grid(row=2, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -108,7 +112,8 @@ def render():
                                  border_color=gray,
                                  border_width=1,
                                  text_color=white,
-                                 font=("arial", 20,))
+                                 font=("arial", 20),
+                                 command=lambda: button_click("( )"))
 
     btn_brackets.grid(row=2, column=2, sticky="w", columnspan=1,  padx=2, pady=2)
 
@@ -122,7 +127,8 @@ def render():
                                    border_color=gray,
                                    border_width=1,
                                    text_color=white,
-                                   font=("arial", 20,))
+                                   font=("arial", 20),
+                                   command=lambda: button_click("%"))
 
     btn_percentage.grid(row=2, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -136,7 +142,8 @@ def render():
                                border_color=gray,
                                border_width=1,
                                text_color=white,
-                               font=("arial", 20,))
+                               font=("arial", 20),
+                               command=lambda: button_click(":"))
 
     btn_divide.grid(row=2, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -150,7 +157,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("7"))
 
     btn_7.grid(row=3, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -164,7 +172,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("8"))
 
     btn_8.grid(row=3, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -178,7 +187,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("9"))
 
     btn_9.grid(row=3, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -192,7 +202,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("x"))
 
     btn_x.grid(row=3, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -206,7 +217,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("4"))
 
     btn_4.grid(row=4, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -220,7 +232,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("5"))
 
     btn_5.grid(row=4, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -234,7 +247,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("6"))
 
     btn_6.grid(row=4, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -248,7 +262,8 @@ def render():
                               border_color=gray,
                               border_width=1,
                               text_color=white,
-                              font=("arial", 20,))
+                              font=("arial", 20),
+                              command=lambda: button_click("-"))
 
     btn_minus.grid(row=4, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -262,7 +277,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("1"))
 
     btn_1.grid(row=5, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -276,7 +292,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("2"))
 
     btn_2.grid(row=5, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -290,7 +307,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("3"))
 
     btn_3.grid(row=5, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -304,7 +322,8 @@ def render():
                              border_color=gray,
                              border_width=1,
                              text_color=white,
-                             font=("arial", 20,))
+                             font=("arial", 20),
+                             command=lambda: button_click("+"))
 
     btn_plus.grid(row=5, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -318,7 +337,8 @@ def render():
                             border_color=gray,
                             border_width=1,
                             text_color=white,
-                            font=("arial", 20,))
+                            font=("arial", 20),
+                            command=lambda: button_click("-/+"))
 
     btn_idk.grid(row=6, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -332,7 +352,8 @@ def render():
                           border_color=gray,
                           border_width=1,
                           text_color=white,
-                          font=("arial", 20,))
+                          font=("arial", 20),
+                          command=lambda: button_click("0"))
 
     btn_0.grid(row=6, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -346,7 +367,8 @@ def render():
                             border_color=gray,
                             border_width=1,
                             text_color=white,
-                            font=("arial", 20,))
+                            font=("arial", 20),
+                            command=lambda: button_click("."))
 
     btn_dot.grid(row=6, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -360,9 +382,15 @@ def render():
                                border_color=secondary,
                                border_width=1,
                                text_color=white,
-                               font=("arial", 20,))
+                               font=("arial", 20),
+                               command=lambda: button_click("="))
 
     btn_equals.grid(row=6, column=4, sticky="w", columnspan=1, padx=2, pady=2)
+
+    def button_click(text):
+        print(text)
+        current_text = display_text.get()  # Get current text from display
+        display_text.set(current_text + text) # current text + another number
 
     return root
 
