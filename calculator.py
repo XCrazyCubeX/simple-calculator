@@ -12,6 +12,9 @@ def render():
     root = ctk.CTk()
     root.attributes('-alpha', 0.95)
 
+    # Set title
+    root.title("Calculator")
+
     # define frame width and height
     frame_width = 350
     frame_height = 550
@@ -95,7 +98,7 @@ def render():
                           hover_color=hovers,
                           text=" C ",
                           border_color=tertiary,
-                          border_width=1,
+                          border_width=0,
                           text_color=tertiary,
                           font=("arial", 20),
                           command=lambda: button_click("clear"))
@@ -110,7 +113,7 @@ def render():
                                  hover_color=hovers,
                                  text="( )",
                                  border_color=gray,
-                                 border_width=1,
+                                 border_width=0,
                                  text_color=white,
                                  font=("arial", 20),
                                  command=lambda: button_click("( )"))
@@ -125,7 +128,7 @@ def render():
                                    hover_color=hovers,
                                    text=" % ",
                                    border_color=gray,
-                                   border_width=1,
+                                   border_width=0,
                                    text_color=white,
                                    font=("arial", 20),
                                    command=lambda: button_click("%"))
@@ -140,7 +143,7 @@ def render():
                                hover_color=hovers,
                                text=" ÷ ",
                                border_color=gray,
-                               border_width=1,
+                               border_width=0,
                                text_color=white,
                                font=("arial", 20),
                                command=lambda: button_click(":"))
@@ -155,7 +158,7 @@ def render():
                           hover_color=hovers,
                           text=" 7 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("7"))
@@ -170,7 +173,7 @@ def render():
                           hover_color=hovers,
                           text=" 8 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("8"))
@@ -185,7 +188,7 @@ def render():
                           hover_color=hovers,
                           text=" 9 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("9"))
@@ -200,7 +203,7 @@ def render():
                           hover_color=hovers,
                           text=" x ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("x"))
@@ -215,7 +218,7 @@ def render():
                           hover_color=hovers,
                           text=" 4 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("4"))
@@ -230,7 +233,7 @@ def render():
                           hover_color=hovers,
                           text=" 5 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("5"))
@@ -245,7 +248,7 @@ def render():
                           hover_color=hovers,
                           text=" 6 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("6"))
@@ -260,7 +263,7 @@ def render():
                               hover_color=hovers,
                               text=" - ",
                               border_color=gray,
-                              border_width=1,
+                              border_width=0,
                               text_color=white,
                               font=("arial", 20),
                               command=lambda: button_click("-"))
@@ -275,7 +278,7 @@ def render():
                           hover_color=hovers,
                           text=" 1 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("1"))
@@ -290,7 +293,7 @@ def render():
                           hover_color=hovers,
                           text=" 2 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("2"))
@@ -305,7 +308,7 @@ def render():
                           hover_color=hovers,
                           text=" 3 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("3"))
@@ -320,7 +323,7 @@ def render():
                              hover_color=hovers,
                              text=" + ",
                              border_color=gray,
-                             border_width=1,
+                             border_width=0,
                              text_color=white,
                              font=("arial", 20),
                              command=lambda: button_click("+"))
@@ -335,7 +338,7 @@ def render():
                             hover_color=hovers,
                             text="+/-",
                             border_color=gray,
-                            border_width=1,
+                            border_width=0,
                             text_color=white,
                             font=("arial", 20),
                             command=lambda: button_click("-/+"))
@@ -350,7 +353,7 @@ def render():
                           hover_color=hovers,
                           text=" 0 ",
                           border_color=gray,
-                          border_width=1,
+                          border_width=0,
                           text_color=white,
                           font=("arial", 20),
                           command=lambda: button_click("0"))
@@ -365,7 +368,7 @@ def render():
                             hover_color=hovers,
                             text=" . ",
                             border_color=gray,
-                            border_width=1,
+                            border_width=0,
                             text_color=white,
                             font=("arial", 20),
                             command=lambda: button_click("."))
@@ -380,7 +383,7 @@ def render():
                                hover_color=hovers,
                                text=" = ",
                                border_color=secondary,
-                               border_width=1,
+                               border_width=0,
                                text_color=white,
                                font=("arial", 20),
                                command=lambda: button_click("="))
@@ -390,7 +393,14 @@ def render():
     def button_click(text):
         print(text)
         current_text = display_text.get()  # Get current text from display
-        display_text.set(current_text + text) # current text + another number
+        display_text.set(current_text + text) # current text + another number\
+
+        if text == "clear":
+            display_text.set("")
+        return current_text, display_text
+
+
+
 
     return root
 
