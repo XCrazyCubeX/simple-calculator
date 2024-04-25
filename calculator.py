@@ -13,7 +13,7 @@ def render():
     root.attributes('-alpha', 0.95)
 
     # define frame width and height
-    frame_width = 400
+    frame_width = 350
     frame_height = 550
     root.geometry(f"{frame_width}x{frame_height}")
 
@@ -40,37 +40,37 @@ def render():
                          width=350,
                          height=100,
                          )
-    row_1.grid(padx=25, pady=10, row=1)
+    row_1.grid(pady=10, row=1)
 
     row_2 = ctk.CTkFrame(root,
                          width=350,
                          height=100,
                          )
-    row_2.grid(padx=25, row=2)
+    row_2.grid(row=2)
 
     row_3 = ctk.CTkFrame(root,
                          width=350,
                          height=100,
                          )
-    row_3.grid(padx=25, row=3)
+    row_3.grid(row=3)
 
     row_4 = ctk.CTkFrame(root,
                          width=350,
                          height=100,
                          )
-    row_4.grid(padx=25, row=4)
+    row_4.grid(row=4)
 
     row_5 = ctk.CTkFrame(root,
                          width=350,
                          height=100,
                          )
-    row_5.grid(padx=25, row=5)
+    row_5.grid(row=5)
 
     row_6 = ctk.CTkFrame(root,
                          width=350,
                          height=100,
                          )
-    row_6.grid(padx=25, row=6)
+    row_6.grid(row=6)
 
     # label for displaying inputs and outputs
     # aka frame on top
