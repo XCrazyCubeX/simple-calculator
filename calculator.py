@@ -1,15 +1,69 @@
 import customtkinter as ctk
 
+root = ctk.CTk()
 
-def render():
-    """ rendering contents """
+display_text = ctk.StringVar()  # Variable to hold the text to display
+
+calculation = ""
+
+
+def main():
+    calculator()
+    root.mainloop()
+
+
+def calculator():
+    def calculation(text):
+        global calculation
+
+        current_text = display_text.get()  # Get current text from display
+        current_calculation = calculation
+
+        # starter character
+        if len(current_text) == 0:
+            display_text.set(text)  # current text + another number
+            calculation = text
+        else:
+            display_text.set(current_text + text)  # current text + another number
+            calculation = current_calculation + text
+
+            # clear display using C
+            if text == "clear":
+                display_text.set("")
+                calculation = 0
+
+            # Remove last character
+            if text == "⌫":
+                display_text.set(current_text[:-1])
+                calculation = current_calculation[:-1]
+
+            if text == "x":
+                display_text.set(current_text + text)
+                calculation = current_calculation + str('*')
+
+            if text == "÷":
+                display_text.set(current_text + text)
+                calculation = current_calculation + str('/')
+
+            if text == "=":
+                result = eval(calculation[:-1])
+                calculation = calculation[:-1]
+
+                calculation = str(result)
+
+                display_text.set(result)
+                print(result)
+
+        print(calculation)
+
     # this is where all contents are created
     # this means buttons, frame and all other
     # rendering contents
 
+    """ rendering contents """
+
     # Create core custom tkinter
     # root is everything the whole container
-    root = ctk.CTk()
     root.attributes('-alpha', 0.95)
 
     # Set title
@@ -32,7 +86,9 @@ def render():
     white = "#fcfcfc"
     gray = "#828181"
     tertiary = "#d11d2f"
-    hovers = "#2e2d2d"
+
+    btn_hover = "#2e2d2d"
+    btn2_hover = "#0b994d"
 
     # each button size
     # this is width AND height
@@ -77,31 +133,55 @@ def render():
 
     # label for displaying inputs and outputs
     # aka frame on top
-    display_text = ctk.StringVar()  # Variable to hold the text to display
     display = ctk.CTkLabel(row_1,
                            width=350,
                            height=100,
                            fg_color=primary,
                            corner_radius=5,
                            text="",
-                           font=("arial", 40),
-                           textvariable=display_text,
-                           anchor="e")
+                           anchor="w"
 
-    display.grid(row=1, column=1, columnspan=8)
+                           )
 
+    display.grid(row=1, column=1, columnspan=4, sticky="w")
+
+    display_content = ctk.CTkLabel(root,
+                                   textvariable=display_text,
+                                   anchor="e",
+                                   font=("arial", 40),
+                                   fg_color=primary,
+                                   corner_radius=0,
+                                   bg_color=primary,
+
+    )
+
+    display_content.grid(row=1, sticky="w", padx=20)
+
+    backspace = ctk.CTkButton(root,
+                              width=50,
+                              text="⌫",
+                              anchor="e",
+                              font=("arial", 30),
+                              fg_color=primary,
+                              corner_radius=0,
+                              hover_color=primary,
+                              border_width=0,
+                              bg_color=primary,
+                              command=lambda: calculation("⌫"))
+
+    backspace.grid(row=1, sticky="e", padx=10)
     # C #
     btn_c = ctk.CTkButton(row_2,
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" C ",
                           border_color=tertiary,
                           border_width=0,
                           text_color=tertiary,
                           font=("arial", 20),
-                          command=lambda: button_click("clear"))
+                          command=lambda: calculation("clear"))
 
     btn_c.grid(row=2, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -110,13 +190,13 @@ def render():
                                  width=button_size,
                                  height=button_size,
                                  fg_color=primary,
-                                 hover_color=hovers,
+                                 hover_color=btn_hover,
                                  text="( )",
                                  border_color=gray,
                                  border_width=0,
                                  text_color=white,
                                  font=("arial", 20),
-                                 command=lambda: button_click("( )"))
+                                 command=lambda: calculation("( )"))
 
     btn_brackets.grid(row=2, column=2, sticky="w", columnspan=1,  padx=2, pady=2)
 
@@ -125,13 +205,13 @@ def render():
                                    width=button_size,
                                    height=button_size,
                                    fg_color=primary,
-                                   hover_color=hovers,
+                                   hover_color=btn_hover,
                                    text=" % ",
                                    border_color=gray,
                                    border_width=0,
                                    text_color=white,
                                    font=("arial", 20),
-                                   command=lambda: button_click("%"))
+                                   command=lambda: calculation("%"))
 
     btn_percentage.grid(row=2, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -140,13 +220,13 @@ def render():
                                width=button_size,
                                height=button_size,
                                fg_color=primary,
-                               hover_color=hovers,
+                               hover_color=btn_hover,
                                text=" ÷ ",
                                border_color=gray,
                                border_width=0,
                                text_color=white,
                                font=("arial", 20),
-                               command=lambda: button_click(":"))
+                               command=lambda: calculation("÷"))
 
     btn_divide.grid(row=2, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -155,13 +235,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 7 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("7"))
+                          command=lambda: calculation("7"))
 
     btn_7.grid(row=3, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -170,13 +250,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 8 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("8"))
+                          command=lambda: calculation("8"))
 
     btn_8.grid(row=3, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -185,13 +265,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 9 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("9"))
+                          command=lambda: calculation("9"))
 
     btn_9.grid(row=3, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -200,13 +280,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" x ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("x"))
+                          command=lambda: calculation("x"))
 
     btn_x.grid(row=3, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -215,13 +295,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 4 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("4"))
+                          command=lambda: calculation("4"))
 
     btn_4.grid(row=4, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -230,13 +310,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 5 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("5"))
+                          command=lambda: calculation("5"))
 
     btn_5.grid(row=4, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -245,13 +325,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 6 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("6"))
+                          command=lambda: calculation("6"))
 
     btn_6.grid(row=4, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -260,13 +340,13 @@ def render():
                               width=button_size,
                               height=button_size,
                               fg_color=primary,
-                              hover_color=hovers,
+                              hover_color=btn_hover,
                               text=" - ",
                               border_color=gray,
                               border_width=0,
                               text_color=white,
                               font=("arial", 20),
-                              command=lambda: button_click("-"))
+                              command=lambda: calculation("-"))
 
     btn_minus.grid(row=4, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -275,13 +355,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 1 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("1"))
+                          command=lambda: calculation("1"))
 
     btn_1.grid(row=5, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -290,13 +370,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 2 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("2"))
+                          command=lambda: calculation("2"))
 
     btn_2.grid(row=5, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -305,13 +385,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 3 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("3"))
+                          command=lambda: calculation("3"))
 
     btn_3.grid(row=5, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -320,13 +400,13 @@ def render():
                              width=button_size,
                              height=button_size,
                              fg_color=primary,
-                             hover_color=hovers,
+                             hover_color=btn_hover,
                              text=" + ",
                              border_color=gray,
                              border_width=0,
                              text_color=white,
                              font=("arial", 20),
-                             command=lambda: button_click("+"))
+                             command=lambda: calculation("+"))
 
     btn_plus.grid(row=5, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -335,13 +415,13 @@ def render():
                             width=button_size,
                             height=button_size,
                             fg_color=primary,
-                            hover_color=hovers,
+                            hover_color=btn_hover,
                             text="+/-",
                             border_color=gray,
                             border_width=0,
                             text_color=white,
                             font=("arial", 20),
-                            command=lambda: button_click("-/+"))
+                            command=lambda: calculation("-/+"))
 
     btn_idk.grid(row=6, column=1, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -350,13 +430,13 @@ def render():
                           width=button_size,
                           height=button_size,
                           fg_color=primary,
-                          hover_color=hovers,
+                          hover_color=btn_hover,
                           text=" 0 ",
                           border_color=gray,
                           border_width=0,
                           text_color=white,
                           font=("arial", 20),
-                          command=lambda: button_click("0"))
+                          command=lambda: calculation("0"))
 
     btn_0.grid(row=6, column=2, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -365,13 +445,13 @@ def render():
                             width=button_size,
                             height=button_size,
                             fg_color=primary,
-                            hover_color=hovers,
+                            hover_color=btn_hover,
                             text=" . ",
                             border_color=gray,
                             border_width=0,
                             text_color=white,
                             font=("arial", 20),
-                            command=lambda: button_click("."))
+                            command=lambda: calculation("."))
 
     btn_dot.grid(row=6, column=3, sticky="w", columnspan=1, padx=2, pady=2)
 
@@ -380,31 +460,16 @@ def render():
                                width=button_size,
                                height=button_size,
                                fg_color=secondary,
-                               hover_color=hovers,
+                               hover_color=btn2_hover,
                                text=" = ",
                                border_color=secondary,
                                border_width=0,
                                text_color=white,
                                font=("arial", 20),
-                               command=lambda: button_click("="))
+                               command=lambda: calculation("="))
 
     btn_equals.grid(row=6, column=4, sticky="w", columnspan=1, padx=2, pady=2)
 
-    def button_click(text):
-        print(text)
-        current_text = display_text.get()  # Get current text from display
-        display_text.set(current_text + text) # current text + another number\
 
-        if text == "clear":
-            display_text.set("")
-        return current_text, display_text
-
-
-
-
-    return root
-
-
-if __name__ == '__main__':
-    root = render()
-    root.mainloop()
+if __name__ == "__main__":
+    main()
