@@ -1,4 +1,4 @@
-# GUI CALCULATOR
+# MODERN GUI CALCULATOR
 
 ## requirements
 Requirements can be found inside the requirements.txt
