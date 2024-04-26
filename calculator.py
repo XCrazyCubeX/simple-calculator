@@ -1,28 +1,47 @@
 import customtkinter as ctk
 
+# root = customtkinter
 root = ctk.CTk()
 
-display_text = ctk.StringVar()  # Variable to hold the text to display
+# Variable to hold the text to display
+display_text = ctk.StringVar()
 
+# Variable to hold the sum for calculation
 calculation = ""
 
 
+# initialize Calculator and start rendering
 def main():
     calculator()
     root.mainloop()
 
 
+# this is the whole calculator
+# rendering and calculating are inside
+# of this function
 def calculator():
     def calculation(text):
         global calculation
 
+        # get current text
+        # and get current calculation
         current_text = display_text.get()  # Get current text from display
         current_calculation = calculation
 
         # starter character
+        # if no character already
+        # place first character
         if len(current_text) == 0:
             display_text.set(text)  # current text + another number
             calculation = text
+
+            # Removes ⌫ because
+            # there is no character yet
+            if text == "⌫":
+                display_text.set(current_text[:-1])
+
+        # If character is there already
+        # start adding the pressed buttons text
         else:
             display_text.set(current_text + text)  # current text + another number
             calculation = current_calculation + text
@@ -37,14 +56,22 @@ def calculator():
                 display_text.set(current_text[:-1])
                 calculation = current_calculation[:-1]
 
+            # Makes sure x gets replaced by *
+            # inside calculation
             if text == "x":
                 display_text.set(current_text + text)
                 calculation = current_calculation + str('*')
 
+            # Makes sure ÷ gets replaced by /
+            # inside calculation
             if text == "÷":
                 display_text.set(current_text + text)
                 calculation = current_calculation + str('/')
 
+            # This will calculate the users input
+            # the input that stores inside calculation
+            # then a result will come out
+            # also removes the last character aka "="
             if text == "=":
                 result = eval(calculation[:-1])
                 calculation = calculation[:-1]
@@ -64,7 +91,7 @@ def calculator():
 
     # Create core custom tkinter
     # root is everything the whole container
-    root.attributes('-alpha', 0.95)
+    root.attributes('-alpha', 0.91)
 
     # Set title
     root.title("Calculator")
@@ -151,9 +178,7 @@ def calculator():
                                    font=("arial", 40),
                                    fg_color=primary,
                                    corner_radius=0,
-                                   bg_color=primary,
-
-    )
+                                   bg_color=primary,)
 
     display_content.grid(row=1, sticky="w", padx=20)
 
@@ -161,7 +186,7 @@ def calculator():
                               width=50,
                               text="⌫",
                               anchor="e",
-                              font=("arial", 30),
+                              font=("arial", 25),
                               fg_color=primary,
                               corner_radius=0,
                               hover_color=primary,
